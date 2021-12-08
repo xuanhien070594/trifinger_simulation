@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finger Types &mdash; TriFinger Robot Simulation 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Simulation vs Real Robot in trifinger_simulation" href="../simreal/simwithreal.html" />
+    <link rel="prev" title="Quickstart" href="first_steps.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> TriFinger Robot Simulation
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first_steps.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Finger Types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#trifingerpro">TriFingerPro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#trifingeredu">TriFingerEdu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#trifingerone">TriFingerOne</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Ease of Use with a Real Robot</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../simreal/simwithreal.html">Simulation vs Real Robot in trifinger_simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simreal/realwithsim.html">Simulation vs Real Robot in the Real Robot API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simreal/simvsreal.html">Differences between Simulation and Real Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simreal/timesteplogic.html">Time Relation of Actions and Observations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/sim_finger.html">The SimFinger Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/trifingerplatform.html">The TriFingerPlatform Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/collision_objects.html">Module collision_objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/visual_objects.html">Module visual_objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/camera.html">Module camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/pinocchio_utils.html">Module pinocchio_utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/finger_types_data.html">Module finger_types_data</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TriFinger Robot Simulation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Finger Types</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/getting_started/finger_types.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="finger-types">
+<span id="id1"></span><h1>Finger Types<a class="headerlink" href="#finger-types" title="Permalink to this headline"></a></h1>
+<p>The simulation supports different types of (Tri-)Finger robots.  The type has
+to be passed to the <code class="xref py py-class docutils literal notranslate"><span class="pre">SimFinger</span></code> class
+upon initialisation.  The different types that are currently supported by the
+simulation are described below.  Note that the moving direction of some joints
+differ between the types.</p>
+<p>The “TriFinger” is basically just an arrangement of three individual fingers,
+so it is also possible to use a single finger.  Thus for each type there is
+also a single finger version implemented, simply drop the “tri” from the name.</p>
+<section id="trifingerpro">
+<h2>TriFingerPro<a class="headerlink" href="#trifingerpro" title="Permalink to this headline"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id2">
+<img alt="../_images/trifingerpro.jpg" src="../_images/trifingerpro.jpg" />
+<figcaption>
+<p><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">finger_type=&quot;trifingerpro&quot;</span></code></span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id3">
+<img alt="../_images/fingerpro.jpg" src="../_images/fingerpro.jpg" />
+<figcaption>
+<p><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">finger_type=&quot;fingerpro&quot;</span></code></span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<p>This is the robot that is used in the <a class="reference external" href="https://real-robot-challenge.com">Real Robot Challenge</a>.  The visuals of
+the robot model are close to what the real robot looks like, so it can be used
+for rendering of reasonable realistic images (within the limitations of
+PyBullet’s rendering options).</p>
+</section>
+<section id="trifingeredu">
+<h2>TriFingerEdu<a class="headerlink" href="#trifingeredu" title="Permalink to this headline"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id4">
+<img alt="../_images/trifingeredu.jpg" src="../_images/trifingeredu.jpg" />
+<figcaption>
+<p><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">finger_type=&quot;trifingeredu&quot;</span></code></span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id5">
+<img alt="../_images/fingeredu.jpg" src="../_images/fingeredu.jpg" />
+<figcaption>
+<p><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">finger_type=&quot;fingeredu&quot;</span></code></span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The “Edu” version is a more lightweight, cheaper and easier to build version of
+the robot.  The hardware documentation is available through the <a class="reference external" href="https://github.com/open-dynamic-robot-initiative/open_robot_actuator_hardware">Open Dynamic
+Robot Initiative</a></p>
+<p>The robot model is not optimised for realistic rendering, the different fingers
+are rendered in different colours to make it easier to distinguish them.</p>
+</section>
+<section id="trifingerone">
+<h2>TriFingerOne<a class="headerlink" href="#trifingerone" title="Permalink to this headline"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-default" id="id6">
+<img alt="../_images/trifingerone.jpg" src="../_images/trifingerone.jpg" />
+<figcaption>
+<p><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">finger_type=&quot;trifingerone&quot;</span></code></span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+<td><figure class="align-default" id="id7">
+<img alt="../_images/fingerone.jpg" src="../_images/fingerone.jpg" />
+<figcaption>
+<p><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">finger_type=&quot;fingerone&quot;</span></code></span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<p>(Tri)FingerOne is an early prototype (so to say “version 1”) of the robot.</p>
+<p>The robot model is not optimised for realistic rendering, the different fingers
+are rendered in different colours to make it easier to distinguish them.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="first_steps.html" class="btn btn-neutral float-left" title="Quickstart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../simreal/simwithreal.html" class="btn btn-neutral float-right" title="Simulation vs Real Robot in trifinger_simulation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Max Planck Institute for Intelligent Systems.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

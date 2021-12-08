@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulation vs Real Robot in trifinger_simulation &mdash; TriFinger Robot Simulation 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Simulation vs Real Robot in the Real Robot API" href="realwithsim.html" />
+    <link rel="prev" title="Finger Types" href="../getting_started/finger_types.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> TriFinger Robot Simulation
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/first_steps.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/finger_types.html">Finger Types</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Ease of Use with a Real Robot</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Simulation vs Real Robot in trifinger_simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="realwithsim.html">Simulation vs Real Robot in the Real Robot API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simvsreal.html">Differences between Simulation and Real Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timesteplogic.html">Time Relation of Actions and Observations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/sim_finger.html">The SimFinger Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/trifingerplatform.html">The TriFingerPlatform Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/collision_objects.html">Module collision_objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/visual_objects.html">Module visual_objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/camera.html">Module camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/pinocchio_utils.html">Module pinocchio_utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/finger_types_data.html">Module finger_types_data</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TriFinger Robot Simulation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Simulation vs Real Robot in trifinger_simulation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/simreal/simwithreal.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="simulation-vs-real-robot-in-trifinger-simulation">
+<h1>Simulation vs Real Robot in trifinger_simulation<a class="headerlink" href="#simulation-vs-real-robot-in-trifinger-simulation" title="Permalink to this headline"></a></h1>
+<p>We have designed the entire <cite>trifinger_simulation</cite> package with the
+aim of making it possible to seamlessly transition to our software for
+interfacing with these robots in the real world, to the extent of making
+this transition pretty much plug and play: depending on whether you want
+to create an instance of a simulated robot or a
+real robot, which you would like to use in a gym environment for learning, or for
+optimal control, or just to play around in by sending some crazy random commands.</p>
+<p>To give a very simple example of this, consider sending some control commands to
+the TriFinger,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">trifinger_simulation</span> <span class="kn">import</span> <span class="n">sim_finger</span><span class="p">,</span> <span class="n">real_finger</span>
+
+<span class="k">if</span> <span class="n">use_real</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="c1"># to know what this robot is, look at the example below</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">sim_finger</span><span class="o">.</span><span class="n">RealFinger</span><span class="p">(</span><span class="n">finger_type</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">real_finger</span><span class="o">.</span><span class="n">SimFinger</span><span class="p">(</span><span class="n">finger_type</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="n">action</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">steps_per_control</span><span class="p">):</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">append_desired_action</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+        <span class="n">observation</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_observation</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>As you can see from the example above, you can control the TriFinger in the
+same way irrespective of whether its a simulated or real. You can see an example
+of this usage in our <a class="reference external" href="https://github.com/open-dynamic-robot-initiative/trifinger_simulation/blob/master/python/trifinger_simulation/gym_wrapper/envs/finger_reach.py">TriFingerReach environment</a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">RealFinger</span></code> class exposes analogous methods to interact with the real robot as the ones
+for <code class="docutils literal notranslate"><span class="pre">SimFinger</span></code>. Inside <code class="docutils literal notranslate"><span class="pre">RealFinger</span></code>, the robot actually gets created like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">robot_interfaces</span>
+<span class="kn">import</span> <span class="nn">robot_fingers</span>
+
+<span class="n">robot_config_path</span> <span class="o">=</span> <span class="s2">&quot;path_to_the_config_yml_of_the_desired_robot_type&quot;</span>
+
+<span class="n">robot_data</span> <span class="o">=</span> <span class="n">robot_interfaces</span><span class="o">.</span><span class="n">trifinger</span><span class="o">.</span><span class="n">SingleProcessData</span><span class="p">()</span>
+
+<span class="n">robot_backend</span> <span class="o">=</span> <span class="n">robot_fingers</span><span class="o">.</span><span class="n">create_trifinger_backend</span><span class="p">(</span>
+            <span class="n">robot_data</span><span class="p">,</span> <span class="n">robot_config_path</span><span class="p">)</span>
+<span class="n">robot</span> <span class="o">=</span> <span class="n">robot_interfaces</span><span class="o">.</span><span class="n">trifinger</span><span class="o">.</span><span class="n">Frontend</span><span class="p">(</span><span class="n">robot_data</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In order to use the <code class="docutils literal notranslate"><span class="pre">RealFinger</span></code> class, you would need to install additional packages like
+<a class="reference external" href="https://github.com/open-dynamic-robot-initiative/robot_interfaces/blob/master/">robot_interfaces</a> and <a class="reference external" href="https://github.com/open-dynamic-robot-initiative/robot_fingers">robot_fingers</a> as you can see in the example above. These packages are
+not a part of the <a class="reference external" href="https://github.com/open-dynamic-robot-initiative/trifinger_simulation/blob/master/environment.yml">trifinger_simulation conda environment</a>. Instructions on how to install
+these packages will follow soon in the <a class="reference internal" href="../getting_started/installation.html#colcon"><span class="std std-ref">Using colcon</span></a> section.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If at this point, you are interested in exploring our software interface for the
+real robot, you can head over to the frontend of this interface to check out
+the exposed methods in the <a class="reference external" href="https://github.com/open-dynamic-robot-initiative/robot_interfaces/blob/master/include/robot_interfaces/robot_frontend.hpp">RobotFrontend</a>,
+and check out some demos for controlling a real robot in <a class="reference external" href="https://github.com/open-dynamic-robot-initiative/robot_fingers/tree/master/demos">here</a>.</p>
+</div>
+<p>In addition, you can also access the complete API of interacting with the real robot (the <a class="reference external" href="https://github.com/open-dynamic-robot-initiative/robot_interfaces/blob/master/include/robot_interfaces/robot_frontend.hpp">RobotFrontend</a> mentioned
+in the note above) with this simulation. Head over to the next section, <a class="reference internal" href="realwithsim.html#robot-interfaces-with-simulation"><span class="std std-ref">Using the Simulation through the robot_interfaces API</span></a> to know how to do this.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../getting_started/finger_types.html" class="btn btn-neutral float-left" title="Finger Types" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="realwithsim.html" class="btn btn-neutral float-right" title="Simulation vs Real Robot in the Real Robot API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Max Planck Institute for Intelligent Systems.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

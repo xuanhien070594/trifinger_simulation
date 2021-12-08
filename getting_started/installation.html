@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; TriFinger Robot Simulation 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Quickstart" href="first_steps.html" />
+    <link rel="prev" title="Welcome to the TriFinger Robot Simulation docs!" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> TriFinger Robot Simulation
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#stand-alone-installation-using-pip">Stand-alone installation using pip</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-venv">Using venv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-conda">Using conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-installation">Test Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-colcon">Using colcon</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="first_steps.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finger_types.html">Finger Types</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Ease of Use with a Real Robot</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../simreal/simwithreal.html">Simulation vs Real Robot in trifinger_simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simreal/realwithsim.html">Simulation vs Real Robot in the Real Robot API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simreal/simvsreal.html">Differences between Simulation and Real Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simreal/timesteplogic.html">Time Relation of Actions and Observations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/sim_finger.html">The SimFinger Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/trifingerplatform.html">The TriFingerPlatform Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/collision_objects.html">Module collision_objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/visual_objects.html">Module visual_objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/camera.html">Module camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/pinocchio_utils.html">Module pinocchio_utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/finger_types_data.html">Module finger_types_data</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TriFinger Robot Simulation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/getting_started/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h1>
+<p>There are two ways to build/install this package:</p>
+<ol class="arabic simple">
+<li><p>Stand-alone installation using pip</p></li>
+<li><p>As part of a colon workspace</p></li>
+</ol>
+<section id="stand-alone-installation-using-pip">
+<h2>Stand-alone installation using pip<a class="headerlink" href="#stand-alone-installation-using-pip" title="Permalink to this headline"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We are developing for Python 3.8.  Other versions may work as well but are
+not officially supported.</p>
+</div>
+<p>Get the source from GitHub:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/open-dynamic-robot-initiative/trifinger_simulation
+</pre></div>
+</div>
+<p>To avoid version conflicts with other packages on your system, it is
+recommended to install the package in an isolated environment like venv or
+conda.</p>
+<section id="using-venv">
+<h3>Using venv<a class="headerlink" href="#using-venv" title="Permalink to this headline"></a></h3>
+<p>You may first need to install <code class="docutils literal notranslate"><span class="pre">venv</span></code>.  E.g. on Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span>
+<span class="pre">python3-venv</span></code>.  Then create a new environment and install the package and its
+dependencies</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python3 -m venv ~/venv_trifinger_simulation
+$ . ~/venv_trifinger_simulation/bin/activate
+
+$ pip install --upgrade pip  <span class="c1"># make sure the latest version of pip is used</span>
+
+$ <span class="nb">cd</span> trifinger_simulation
+$ pip install -r requirements.txt
+$ pip install .
+</pre></div>
+</div>
+</section>
+<section id="using-conda">
+<h3>Using conda<a class="headerlink" href="#using-conda" title="Permalink to this headline"></a></h3>
+<p>If not already done, install <code class="docutils literal notranslate"><span class="pre">conda</span></code> (Miniconda is sufficient).  To do so, see the
+<a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/">official documentation</a>.</p>
+<p>We tested with conda version 4.8.3.</p>
+<ol class="arabic">
+<li><p>Create the conda environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda env create -f environment.yml
+</pre></div>
+</div>
+</li>
+<li><p>Activate the environment (you may have to do this in a new terminal):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda activate trifinger_simulation
+</pre></div>
+</div>
+</li>
+<li><p>Install the trifinger_simulation package:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd trifinger_simulation
+$ python3 -m pip install .
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="test-installation">
+<h3>Test Installation<a class="headerlink" href="#test-installation" title="Permalink to this headline"></a></h3>
+<p>You can test the installation by running the unit tests:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python3 -m pytest tests/
+</pre></div>
+</div>
+<p>or by running one of the demos:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python3 demos/demo_trifinger_platform.py
+</pre></div>
+</div>
+</section>
+</section>
+<section id="using-colcon">
+<span id="colcon"></span><h2>Using colcon<a class="headerlink" href="#using-colcon" title="Permalink to this headline"></a></h2>
+<p>trifinger_simulation is part of the “ROBOT_FINGERS” project.  For build
+instructions see the <a class="reference external" href="http://people.tuebingen.mpg.de/mpi-is-software/robotfingers/docs/robot_fingers/doc/installation.html" title="(in robot_fingers)"><span class="xref std std-doc">robot_fingers documentation</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to the TriFinger Robot Simulation docs!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="first_steps.html" class="btn btn-neutral float-right" title="Quickstart" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Max Planck Institute for Intelligent Systems.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

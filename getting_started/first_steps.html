@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quickstart &mdash; TriFinger Robot Simulation 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Finger Types" href="finger_types.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> TriFinger Robot Simulation
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#adding-objects-to-the-simulation">Adding Objects to the Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modifying-the-simulation-environment">Modifying the Simulation Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#more-examples">More Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="finger_types.html">Finger Types</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Ease of Use with a Real Robot</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../simreal/simwithreal.html">Simulation vs Real Robot in trifinger_simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simreal/realwithsim.html">Simulation vs Real Robot in the Real Robot API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simreal/simvsreal.html">Differences between Simulation and Real Robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simreal/timesteplogic.html">Time Relation of Actions and Observations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/sim_finger.html">The SimFinger Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/trifingerplatform.html">The TriFingerPlatform Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/collision_objects.html">Module collision_objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/visual_objects.html">Module visual_objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/camera.html">Module camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/pinocchio_utils.html">Module pinocchio_utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/finger_types_data.html">Module finger_types_data</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TriFinger Robot Simulation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Quickstart</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/getting_started/first_steps.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="quickstart">
+<h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline"></a></h1>
+<p>The heart of this simulation is the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">SimFinger</span></code> class.  It takes care of
+initialising PyBullet and loading the robot into the environment.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">trifinger_simulation</span> <span class="kn">import</span> <span class="n">SimFinger</span>
+
+<span class="n">sim</span> <span class="o">=</span> <span class="n">SimFinger</span><span class="p">(</span>
+    <span class="n">finger_type</span><span class="o">=</span><span class="s2">&quot;fingerpro&quot;</span><span class="p">,</span>
+    <span class="n">enable_visualization</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The above example populates the simulation with a “FingerPro” robot, see
+<a class="reference internal" href="finger_types.html"><span class="doc">Finger Types</span></a> for the different robots that are supported.</p>
+<p>By default, the fingers are pointing straight down initially, which usually
+means that they are intersecting with the ground.  It is thus important to
+first set them to a feasible position before starting to run the simulation:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># set feasible initial position for FingerPro</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">reset_finger_positions_and_velocities</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Now you can start to run the simulation by sending actions to the robot.  Below
+is a very basic example that uses position commands to hold the robot at the
+initial position and prints the actual observed position:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="c1"># to have it run in real-time</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">time_step_s</span><span class="p">)</span>
+
+    <span class="c1"># create a position action</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">Action</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">])</span>
+
+    <span class="c1"># send it to the robot (this executes one simulation time step)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">append_desired_action</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+
+    <span class="c1"># get the observation of the current time step</span>
+    <span class="n">observation</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">get_observation</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="n">observation</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When using position commands, a PD controller is executed internally to compute
+the desired torques.  You can also directly use torque commands:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">action</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">Action</span><span class="p">(</span><span class="n">torque</span><span class="o">=</span><span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Regarding the meaning of the <em>time index</em> <code class="docutils literal notranslate"><span class="pre">t</span></code> in the above example, please
+see <a class="reference internal" href="../simreal/timesteplogic.html"><span class="doc">Time Relation of Actions and Observations</span></a>.</p>
+<section id="adding-objects-to-the-simulation">
+<h2>Adding Objects to the Simulation<a class="headerlink" href="#adding-objects-to-the-simulation" title="Permalink to this headline"></a></h2>
+<p>We have a few objects defined in the
+<code class="xref py py-mod docutils literal notranslate"><span class="pre">collision_objects</span></code> module, which can easily be
+added to the simulation.  For example to add a coloured cube add the following
+code <strong>after</strong> initialising <code class="docutils literal notranslate"><span class="pre">SimFinger</span></code>:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">trifinger_simulation</span> <span class="kn">import</span> <span class="n">collision_objects</span>
+
+<span class="n">cube</span> <span class="o">=</span> <span class="n">collision_objects</span><span class="o">.</span><span class="n">ColoredCubeV2</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="modifying-the-simulation-environment">
+<h2>Modifying the Simulation Environment<a class="headerlink" href="#modifying-the-simulation-environment" title="Permalink to this headline"></a></h2>
+<p>If you want to modify any property of the simulation (add objects, change
+parameters, etc.) beyond the interface that is provided by the classes of this
+package, you can simply access pybullet directly.  For example to change the
+default camera pose in the PyBullet GUI:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pybullet</span>
+
+<span class="n">pybullet</span><span class="o">.</span><span class="n">resetDebugVisualizerCamera</span><span class="p">(</span>
+    <span class="n">cameraDistance</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>
+    <span class="n">cameraYaw</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">cameraPitch</span><span class="o">=-</span><span class="mf">30.0</span><span class="p">,</span>
+    <span class="n">cameraTargetPosition</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+    <span class="n">physicsClientId</span><span class="o">=</span><span class="n">sim</span><span class="o">.</span><span class="n">_pybullet_client_id</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Note, however, that all these modifications should be done <strong>after</strong>
+initialising <code class="docutils literal notranslate"><span class="pre">SimFinger</span></code>.  Ideally also pass the “physics client id” to all
+PyBullet calls like shown above.</p>
+</section>
+<section id="more-examples">
+<h2>More Examples<a class="headerlink" href="#more-examples" title="Permalink to this headline"></a></h2>
+<p>For more examples, see the scripts in the <cite>demos/</cite> folder of the
+trifinger_simulation package.  Good starting points are</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">demo_plain_torque_control.py</span></code>:  A very minimalistic demo, similar to the
+example above.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">demo_control.py</span></code>:  A slightly more complicated demo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">demo_inverse_kinematics.py</span></code>:  Uses inverse kinematics to control the
+finger tip position.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">demo_cameras.py</span></code>:  Shows how to use the cameras in simulation (note that
+image rendering is pretty slow, though).</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="finger_types.html" class="btn btn-neutral float-right" title="Finger Types" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Max Planck Institute for Intelligent Systems.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

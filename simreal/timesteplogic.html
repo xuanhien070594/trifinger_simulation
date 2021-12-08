@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Time Relation of Actions and Observations &mdash; TriFinger Robot Simulation 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The SimFinger Class" href="../api/sim_finger.html" />
+    <link rel="prev" title="Differences between Simulation and Real Robot" href="simvsreal.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> TriFinger Robot Simulation
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/first_steps.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/finger_types.html">Finger Types</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Ease of Use with a Real Robot</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="simwithreal.html">Simulation vs Real Robot in trifinger_simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="realwithsim.html">Simulation vs Real Robot in the Real Robot API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simvsreal.html">Differences between Simulation and Real Robot</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Time Relation of Actions and Observations</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/sim_finger.html">The SimFinger Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/trifingerplatform.html">The TriFingerPlatform Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/collision_objects.html">Module collision_objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/visual_objects.html">Module visual_objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/camera.html">Module camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/pinocchio_utils.html">Module pinocchio_utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/finger_types_data.html">Module finger_types_data</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">TriFinger Robot Simulation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Time Relation of Actions and Observations</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/simreal/timesteplogic.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="time-relation-of-actions-and-observations">
+<h1>Time Relation of Actions and Observations<a class="headerlink" href="#time-relation-of-actions-and-observations" title="Permalink to this headline"></a></h1>
+<p>On the real robot, we are using <em>time series</em> for all robot data like actions
+and observations.  The user does not send actions directly to the robot but
+appends them to the “desired actions” time series which serves as a queue.
+At each time step, identified by a <em>time index t</em>, the action at position <em>t</em> is
+taken from the “desired actions” time series and processed.  At the same time an
+observation is acquired from the robot and added to the “observation” time
+series.  This means that the effect of the desired action <code class="docutils literal notranslate"><span class="pre">a_t</span></code> is not yet
+visible in the observation <code class="docutils literal notranslate"><span class="pre">y_t</span></code> as is illustrated below.  (<code class="docutils literal notranslate"><span class="pre">a'_t</span></code>
+corresponds to the <em>applied action</em>, see <a class="reference internal" href="../api/sim_finger.html#desired-vs-applied-action"><span class="std std-ref">Desired vs Applied Action</span></a>)</p>
+<a class="reference internal image-reference" href="../_images/applied_action_dependency.png"><img alt="../_images/applied_action_dependency.png" class="align-center" src="../_images/applied_action_dependency.png" style="width: 80%;" /></a>
+<p>In the <a class="reference external" href="https://github.com/open-dynamic-robot-initiative/robot_interfaces">robot_interfaces</a> software, the method
+<code class="docutils literal notranslate"><span class="pre">append_desired_action()</span></code> is used to
+append actions to the time series.  It returns the time index <em>t</em> at which the
+appended action will be executed.  Methods like
+<code class="docutils literal notranslate"><span class="pre">get_observation</span></code> expect a time index as
+input and will return the data corresponding to this time step.  If the given
+time index refers to a point in the future, these methods will block and wait
+until that point is reached.</p>
+<p>As the simulation is not real-time critical, the behaviour is a bit different
+here:</p>
+<ul class="simple">
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">append_desired_action()</span></code> will directly
+apply the action and step the simulation.</p></li>
+<li><p>There is no actual time series.  The API in the simulation
+follows the same principle to make the transition to the real robot easier.
+However, it is implemented with a buffer size of 1, so the getter methods only
+provide data for the current time step.</p></li>
+<li><p>It is possible to access information from <em>t + 1</em>.  In a typical gym
+environment, it is expected that the observation returned by <code class="docutils literal notranslate"><span class="pre">step(action)</span></code>
+belongs to the moment <em>after</em> the given action is executed (this corresponds
+to the time index <em>t + 1</em>).  To make it easier to get started, we therefore
+allow to access the observations of this time index in the simulation.  Note,
+however, that this is <strong>not possible</strong> on the real robot!</p></li>
+</ul>
+<p>For more information on the API of the real robot, see our publication <a class="reference external" href="https://arxiv.org/abs/2008.03596">TriFinger: An Open-Source
+Robot for Learning Dexterity</a>.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="simvsreal.html" class="btn btn-neutral float-left" title="Differences between Simulation and Real Robot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../api/sim_finger.html" class="btn btn-neutral float-right" title="The SimFinger Class" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Max Planck Institute for Intelligent Systems.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

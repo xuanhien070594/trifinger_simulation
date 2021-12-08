@@ -1,0 +1,28 @@
+# build docs using sphinx and deploy to branch gh-pages
+name: Pages
+on:
+  push:
+    branches:
+      - master
+      - fwidmaier/update_docs
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        path: trifinger_simulation
+        fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+    - name: Build and Commit
+      uses: sphinx-notes/pages@1.0
+      with:
+        repository_path: trifinger_simulation
+        documentation_path: docs
+    - name: Push changes
+      uses: ad-m/github-push-action@v0.6.0
+      with:
+        directory: trifinger_simulation
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: gh-pages
