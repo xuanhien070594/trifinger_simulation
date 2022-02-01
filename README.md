@@ -15,6 +15,11 @@ To learn more about the TriFinger robots, check out our official
 For instructions on how to install and use this package, see the 
 [documentation](https://open-dynamic-robot-initiative.github.io/trifinger_simulation/).
 
+## Installation Note
+If you don't use **conda**, it is very likely to see some errors during package installation. The reason is that **pinocchio** (a dependency of this package)
+is only available on **conda**, not with the normal **pip install** command.
+
+There is workaround which is following instructions to obtain **Pinocchio** via **sudo apt-get install** [here](https://stack-of-tasks.github.io/pinocchio/download.html)
 
 ## Cite Us
 
